@@ -23,8 +23,7 @@ jobs:
       targetType: 'inline'
       script: |
         mkdir -p ~/.ssh
-        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYOAdkF0+N/Q9gWQ3Vq9HI1QpN75hMua8xpJzElFBI4h6IzViRG+lENWA5pq1P2oqHKjYdiLLPo0jjkD7XLlm2g0KmVJ8IcZQnWPJDuVzm3K7SDF5VEWNXyD8RcS4vVQ9y4EMJ0cuq9RrjxEx2Q0I2QXBsFaf2kuy+2YbrMEDHWgUwwwbx6v3AYF6ziJngpKhh2G7A6yCyCquaxMjnFJyRXcPvvAyQJ52mLy+UY7xCnW1UCtgulAirH/andefq6Aw2kHB2zaUAT5tkXNEd9P7aaURbqqBYrvmtuFHPD/0JXdK0/Ck+TuXfU20OjthfmkWNwA8npXj86zL9eLUd/mabrf/B1xI7Nhb/Jw/8uFJE4FiHjoxRVP8PxG80BQINWKJc+U/LxRC/iuUh4dTUxqZlszI1e1ItMs4tA8KIlkmajT4LBKrG/AohxDszHRdY35Y24tIPps9H0gaSfjxmJD9CzdMN0zx/y9ruxPj+i6ZG+RD2n5SWdvJM6GOf10lAfAU= neerajsharma@Neerajs-MacBook-Air.local
-" >> ~/.ssh/authorized_keys
+        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDYOAdkF0+N/Q9gWQ3Vq9HI1QpN75hMua8xpJzElFBI4h6IzViRG+lENWA5pq1P2oqHKjYdiLLPo0jjkD7XLlm2g0KmVJ8IcZQnWPJDuVzm3K7SDF5VEWNXyD8RcS4vVQ9y4EMJ0cuq9RrjxEx2Q0I2QXBsFaf2kuy+2YbrMEDHWgUwwwbx6v3AYF6ziJngpKhh2G7A6yCyCquaxMjnFJyRXcPvvAyQJ52mLy+UY7xCnW1UCtgulAirH/andefq6Aw2kHB2zaUAT5tkXNEd9P7aaURbqqBYrvmtuFHPD/0JXdK0/Ck+TuXfU20OjthfmkWNwA8npXj86zL9eLUd/mabrf/B1xI7Nhb/Jw/8uFJE4FiHjoxRVP8PxG80BQINWKJc+U/LxRC/iuUh4dTUxqZlszI1e1ItMs4tA8KIlkmajT4LBKrG/AohxDszHRdY35Y24tIPps9H0gaSfjxmJD9CzdMN0zx/y9ruxPj+i6ZG+RD2n5SWdvJM6GOf10lAfAU= neerajsharma@Neerajs-MacBook-Air.local" >> ~/.ssh/authorized_keys
 
   - task: Bash@3
     displayName: 'Show agent IP address'
