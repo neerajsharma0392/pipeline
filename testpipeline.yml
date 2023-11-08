@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+- job: Twingate
+  steps:
+
+  - checkout: self
+
+  - task: Bash@3
+    displayName: 'Install Twingate agent'
+    inputs:
+      targetType: 'inline'
+      script: | 
+        curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="eyJhbGciOiJFUzI1NiIsImtpZCI6Ik1HSW5scTZIWTJLNXNSZDRFdnBVRDBmbVhlNkNwdE9BQmliaHpfbFlTZXMiLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiMTgxNzY2IiwiZGlkIjoiMTAzOTU0OCIsImp0aSI6Ijg5MzA0Y2ZmLTg4ZjAtNDZhMy05NmFmLTYxYzBlODhkYzgzMCIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoibmVlcmFqc2hhcm1hMjU5MiIsImV4cCI6MTY5OTQ0NDgyOSwiaWF0IjoxNjk5NDQxMjI5LCJ2ZXIiOiI0IiwidGlkIjoiNjAyMzIiLCJybnciOjE2OTk0NDE1MjksInJuZXRpZCI6Ijc1MzIwIn0.OVmfs69L3OCN7eGzG2wkNNKYYbD2L83xE1FchrD3ju442NVLGlo5Dp158r470ufkg36TnbD44ntQb8jJosTbSA" TWINGATE_REFRESH_TOKEN="xgIEUnx4vQghsgmLD_NlOUSbDOJ0830KQer9aabC7KezEkMgrhaTDJEMV_mZUVGKo64kVQ-tFRKDsTgmcnD9oftYXNndLz_xOGo9zuWjSufZbZa2TDUW5P4YOJjlpuRDq_jLrQ" TWINGATE_NETWORK="neerajsharma2592" bash
+
+  - task: Bash@3
+    displayName: 'Add public key to Agent VM'
+    inputs:
+      targetType: 'inline'
+      script: |
+        mkdir -p ~/.ssh
+        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGjK2paKxZzTegvR3UQ4oOanpNvIW1P6D34RhP4BMUeSOk6EpVGOqQYImcGa6gs56ITUahU7ddLhGiobFsIHBMM4tIjVhOEwoCnWUphyiMwVzL0bwXmxT9mGf1yTd1VgJ4kQM6FB3yCpeYbeRU0Wv5sQxhjwZYUhrfi5vodV8hDmMmWSTrMf6twmOUs5Bn2ZLDvtcq2WI9yYBQlqvizF3ExK+N0Q2grS17nNgBQzIIg/kK7x5sHQajduLkkKq/nVeHc0SwMkEIeORbMTYiC/Bsyp3oy/2GlyqporXkbRFcZzx0A4G2XEuA0f/zaeuX2gJG3GqJJKd1Mdn61gI+4RleCtpWHUV4p6ZbokQtzMyF5wtwnemLNhSU2J/4j799qrEapwwPuYxejlv+vkStWyu4N6kjG4ZwoR/6A6CrUMwO+4HFnxDMrToWJDVToxHZxGBx/lV7ybUTupn2UNp20Re4lKvtIK8Bc/iRFgGOk7P504F8STtZPLUUhU/HSddU3KM= neeraj.sharma2592@outlook.com" >> ~/.ssh/authorized_keys
+
+  - task: Bash@3
+    displayName: 'Show agent IP address'
+    inputs:
+      targetType: 'inline'
+      script: |
+        export ETH0_IP=$(ip addr show eth0 | grep "inet\\b" | awk '{print $2}' | cut -d/ -f1) 
+        echo "##[section]CONNECT WITH: ssh vsts@$ETH0_IP"
+        sleep 1h
